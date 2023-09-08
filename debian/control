@@ -3,24 +3,24 @@ Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
 Uploaders: Stefan Fritsch <sf@debian.org>
 Section: libs
 Priority: optional
-Build-Depends: debhelper (>> 11~),
+Build-Depends: debhelper-compat (= 11),
                autoconf,
                mawk,
                libldap2-dev,
                libexpat1-dev,
                libdb-dev,
                libgdbm-dev,
-               libapr1-dev (>> 1.7.0-0~),
+               libapr1-dev (>> 1.7.2-1~),
                libsqlite3-dev,
                libpq-dev,
                default-libmysqlclient-dev,
                unixodbc-dev,
                doxygen,
                libssl-dev
-Standards-Version: 4.2.1
+Standards-Version: 4.6.1
 Vcs-Browser: https://salsa.debian.org/apache-team/apr-util
 Vcs-Git: https://salsa.debian.org/apache-team/apr-util.git
-Homepage: http://apr.apache.org/
+Homepage: https://apr.apache.org/
 
 Package: libaprutil1
 Architecture: any
@@ -28,7 +28,6 @@ Multi-Arch: same
 Depends: ${shlibs:Depends},
          ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
-Breaks: libapr1 (<< 1.4.8-2~)
 Description: Apache Portable Runtime Utility Library
  APR is Apache's Portable Runtime Library, designed to be a support library
  that provides a predictable and consistent interface to underlying

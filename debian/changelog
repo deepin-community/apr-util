@@ -1,3 +1,46 @@
+apr-util (1.6.3-1) unstable; urgency=medium
+
+  [ Stefan Fritsch ]
+  * Incorporate NMUs. Closes: #1028435
+  * New upstream version:
+    - CVE-2022-25147: Fix Integer Overflow or Wraparound vulnerability
+      in apr_base64
+  * Bump libapr1-dev Build-Dep to 1.7.2-1
+
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
+  * Set debhelper-compat version in Build-Depends.
+  * Drop unnecessary dh arguments: --parallel
+  * Rely on pre-initialized dpkg-architecture variables.
+  * Remove constraints unnecessary since buster (oldstable):
+    + libaprutil1: Drop conflict with removed package libapr1 (<< 1.4.8-2~) in
+      Breaks.
+
+  [ Jelmer Vernooĳ ]
+  * Set Repository and Repository-Browse fields in
+    debian/upstream/metadata.
+  * Drop transition for old debug package migration.
+  * Update standards version to 4.6.1, no changes needed.
+
+
+ -- Stefan Fritsch <sf@debian.org>  Fri, 03 Feb 2023 21:15:18 +0100
+
+apr-util (1.6.1-5.2) unstable; urgency=medium
+
+  * Non-maintainer upload by the Reproducible Builds team.
+  * debian/rules: Remove the build path from apt-1-config, using exactly the
+    patch from Vagrant Cascadian in #1006865.
+
+ -- Holger Levsen <holger@debian.org>  Thu, 12 Jan 2023 20:28:37 +0100
+
+apr-util (1.6.1-5.1) unstable; urgency=medium
+
+  * Non-maintainer upload by the Reproducible Builds team.
+  * debian/rules: Remove the build path from apt-1-config, based on a patch by
+    Vagrant Cascadian. Closes: #1006865.
+
+ -- Holger Levsen <holger@debian.org>  Thu, 29 Dec 2022 19:37:54 +0100
+
 apr-util (1.6.1-5) unstable; urgency=medium
 
   [ Jelmer Vernooĳ ]

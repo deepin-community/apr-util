@@ -8,7 +8,7 @@ Subject: Adjust LDFLAGS and INCLUDE
 
 --- apr-util.orig/configure.in
 +++ apr-util/configure.in
-@@ -270,6 +270,9 @@ dnl Prep all the flags and stuff for com
+@@ -280,6 +280,9 @@ dnl Prep all the flags and stuff for com
  dnl
  APR_ADDTO(APRUTIL_LIBS, [$APR_LIBS])
  
