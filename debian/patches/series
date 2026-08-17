@@ -9,3 +9,9 @@ avoid_db_by-default.patch
 test_verbose
 fix_doxygen_inputdir
 doxygen_no_ful_path_names.patch
+CVE-2025-49506.patch
+CVE-2026-32327_pre1.patch
+CVE-2026-32327.patch
+CVE-2026-34191.patch
+CVE-2026-34501.patch
+CVE-2026-34502.patch
