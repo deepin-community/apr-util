@@ -1,3 +1,28 @@
+apr-util (1.6.3-1+deb12u1) bookworm-security; urgency=high
+
+  * Team upload upload by the apache team
+    (Closes: #1143837)
+  * Fix CVE-2025-49506:
+    Function apr_password_validate() was not constant-time with
+    regards to hashes or passwords comparisons, potentially leaking
+    their content via a side channel timing attack.
+  * Fix CVE-2026-32327:
+    A stack recursion attack against any library consumer
+    which parses XML from untrusted sources and uses the
+    apr_xml_quote_elem() function
+  * Fix CVE-2026-34191:
+    Improper Neutralization of Special Elements used
+    in an SQL Command (SQL Injection) vulnerability
+    in Apache Portable Runtime Utility via apr_dbd_oracle provider.
+  * Fix CVE-2026-34501:
+    Heap-based Buffer Overflow vulnerability in Apache Portable
+    Runtime Utility redis client.
+  * Fix CVE-2026-34502:
+    Heap-based Buffer Overflow vulnerability in Apache Portable
+    Runtime Utility memcached client
+
+ -- Bastien Roucariès <rouca@debian.org>  Sun, 16 Aug 2026 18:28:54 +0200
+
 apr-util (1.6.3-1) unstable; urgency=medium
 
   [ Stefan Fritsch ]
