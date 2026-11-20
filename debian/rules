@@ -103,6 +103,22 @@ override_dh_auto_install:
 	perl -p -i -e "s,^dependency_libs=.*,dependency_libs=''," debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/libaprutil-1.la
 	# Remove the buildpath: https://reproducible-builds.org/docs/build-path/
 	perl -p -i -e "s,$(CURDIR),BUILDPATH," debian/tmp/usr/bin/apu-1-config
+	# Guard against a stale build environment: crypt_r() from libcrypt is
+	# used by crypto/apr_passwd.c, so libaprutil-1 inherits the SONAME of
+	# whatever libcrypt the build environment provides. On sw64 that used to
+	# be a libcrypt with SONAME libcrypt.so.1.1, which no package provides,
+	# so the installed library could not be loaded:
+	#   error while loading shared libraries: libcrypt.so.1.1: cannot open
+	#   shared object file
+	# Fail the build instead of publishing a library that cannot be loaded.
+	for f in $$(find debian/tmp -type f -name '*.so*'); do \
+		if readelf -d $$f 2>/dev/null | grep -q 'NEEDED.*libcrypt\.so\.1\.1'; then \
+			echo "ERROR: $$f has a DT_NEEDED entry for libcrypt.so.1.1." >&2; \
+			echo "ERROR: The build environment provides a stale libcrypt." >&2; \
+			echo "ERROR: Check libcrypt-dev and rebuild." >&2; \
+			exit 1; \
+		fi; \
+	done
 
 # The -X option causes the internal-use-only driver libs to be ignored
 override_dh_makeshlibs:
