@@ -1,3 +1,21 @@
+apr-util (1.6.3-1deepin1) unstable; urgency=medium
+
+  * Rebuild so that libaprutil-1 links against the libcrypt provided by
+    libcrypt-dev, fixing a sw64 runtime breakage
+    - Add libcrypt-dev to Build-Depends: crypto/apr_passwd.c uses crypt_r(),
+      so the installed library inherits the SONAME of whatever libcrypt the
+      build environment provides. On sw64 that used to be a libcrypt with
+      SONAME libcrypt.so.1.1, so the old binary carried
+      DT_NEEDED libcrypt.so.1.1
+    - No package provides libcrypt.so.1.1, so every APR consumer failed at
+      run time; e.g. logresolve exited with 127 and "error while loading
+      shared libraries: libcrypt.so.1.1: cannot open shared object file"
+    - Add a post-install check that fails the build if an installed library
+      still declares libcrypt.so.1.1, so a stale build environment cannot
+      silently produce an unloadable package again
+
+ -- lichenggang <lichenggang@uniontech.com>  Fri, 20 Nov 2026 15:35:51 +0800
+
 apr-util (1.6.3-1) unstable; urgency=medium
 
   [ Stefan Fritsch ]
